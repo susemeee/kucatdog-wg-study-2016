@@ -74,9 +74,9 @@ $ pip install -r requirements.txt
 ```
 명령어로 이 프로젝트에 필요한 flask, flask-restful, requests, pytest 라이브러리를 한번에 설치할 수 있습니다.
 
-그 후에 app/api/cookie.py 파일에 flask-restful 포맷에 맞게 API 서버를 구축할 수 있습니다.
+그 후에 app/api/cookie.py 파일에 flask-restful에서 제공하는 클래스를 사용하여 API 서버를 구축해 주세요. 더 사용이 쉽도록 BaseApi라는 클래스를 미리 만들어 놓았습니다.
 
-다음으로,
+API 서버를 구축하면서 서버가 원하는 방향으로 잘 동작하는지 확인하려면 다음으로,
 ```shell
 $ python run.py
 $ py.test

@@ -31,8 +31,9 @@ flavor는 'strawberry', 'apple', 'mint', 'peach', 'zombie' 중 하나이고, 크
 
 쿠키 ID와 같은 경우는 다음 포맷으로 결과값을 반환하시면 됩니다.
 ```JSON
+// 쿠키 ID 저장.
 {
-    "id": 123 //쿠키 ID
+    "id": 123
 }
 ```
 

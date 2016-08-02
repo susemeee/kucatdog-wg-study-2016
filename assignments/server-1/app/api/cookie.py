@@ -1,5 +1,5 @@
 from app.api.base import BaseApi
-from app.models.memory import MemoryBasedModel
+from app.models import database
 
 
 class CookieApi(BaseApi):

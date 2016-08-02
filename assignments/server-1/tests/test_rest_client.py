@@ -1,4 +1,3 @@
-import json
 import random
 
 from . import (
@@ -18,14 +17,14 @@ def new_cookie():
 def test_cookie_client_get_empty_cookie_list(request_get):
     response = request_get('/cookie/')
     assert response.status_code == 200
-    assert json.loads(response.text(), safe=False) == []
+    assert response.json() == []
 
 
 def test_cookie_client_post_creation(request_post):
     cookie = new_cookie()
     response = request_post('/cookie/', data=cookie)
     assert response.status_code == 200
-    data = json.loads(response.text())
+    data = response.json()
     assert 'id' in data
 
     return data['id'], cookie
@@ -40,14 +39,14 @@ def test_cookie_client_multiple_post_creation(request_post):
 
     response = request_get('/cookie/')
     assert response.status_code == 200
-    assert len(json.loads(response.text(), safe=False)) == 10
+    assert len(response.json()) == 10
 
 def test_cookie_client_created_cookie_has_length(request_get, request_post):
     test_cookie_client_post_creation(request_post)
 
     response = request_get('/cookie/')
     assert response.status_code == 200
-    data = json.loads(response.text(), safe=False)
+    data = response.json()
     assert len(data) == 1
 
 
@@ -56,7 +55,7 @@ def test_cookie_client_created_cookie_is_accessable(request_get, request_post):
 
     response = request_get('/cookie/{}'.format(cookie_id))
     assert response.status_code == 200
-    data = json.loads(response.text())
+    data = response.json()
     assert data == cookie
 
 
@@ -74,7 +73,7 @@ def test_cookie_client_put_update_returns_updated_data(request_get, request_post
 
     response = request_get('/cookie/{}'.format(cookie_id))
     assert response.status_code == 200
-    data = json.loads(response.text())
+    data = response.json()
     assert data == updated_cookie
 
 

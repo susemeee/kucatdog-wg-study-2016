@@ -1,6 +1,7 @@
 import pytest
 import requests
 
+from app import mmap_reset
 from run import DEFAULT_PORT
 
 
@@ -9,7 +10,7 @@ def build_request(method_name):
 
     def send_request(endpoint='', data={}):
         response = method(
-            'http://localhost:{}/{}'.format(DEFAULT_PORT, endpoint),
+            'http://localhost:{}/{}'.format(DEFAULT_PORT, endpoint.lstrip('/')),
             data=data
         )
         return response
@@ -18,20 +19,24 @@ def build_request(method_name):
 
 
 @pytest.fixture
-def request_get():
+def request_get(request):
+    request.addfinalizer(mmap_reset)
     return build_request('get')
 
 
 @pytest.fixture
-def request_post():
+def request_post(request):
+    request.addfinalizer(mmap_reset)
     return build_request('post')
 
 
 @pytest.fixture
-def request_put():
+def request_put(request):
+    request.addfinalizer(mmap_reset)
     return build_request('put')
 
 
 @pytest.fixture
-def request_delete():
+def request_delete(request):
+    request.addfinalizer(mmap_reset)
     return build_request('delete')

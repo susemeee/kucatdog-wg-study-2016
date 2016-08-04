@@ -6,3 +6,8 @@ class CookieApi(BaseApi):
     endpoint = '/cookie/<string:cookie_name>'
     # Do what you want.
     pass
+
+class CookieListApi(BaseApi):
+    endpoint = '/cookie'
+    # Do what you want.
+    pass

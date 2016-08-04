@@ -1,3 +1,3 @@
-from .cookie import CookieApi
+from .cookie import CookieApi, CookieListApi
 
-api_list = [CookieApi]
+api_list = [CookieApi, CookieListApi]
